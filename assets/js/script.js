@@ -84,11 +84,14 @@ listItemEl.appendChild(taskActionsEl);
 // add entire list item to list
 tasksToDoEl.appendChild(listItemEl);
 
+// save tasks to localStorage
+saveTasks();
+
 // increase task counter for next unique id
 taskIdCounter++;
 
 
-}
+};
 
 
 
@@ -161,6 +164,9 @@ var completeEditTask = function(taskName, taskType, taskId) {
 }
 
   alert("Task Updated!");
+
+  // save tasks to localStorage
+  saveTasks();
 };
 
 
@@ -215,6 +221,9 @@ var taskStatusChangeHandler = function(event) {
 }
 // console.log(tasks);
 
+// save tasks to localStorage
+saveTasks();
+
 };
 
 
@@ -256,10 +265,18 @@ for (var i = 0; i < tasks.length; i++) {
 
 // reassign tasks array to be the same as updatedTaskArr
 tasks = updatedTaskArr;
-
-
+// save tasks to localStorage
+saveTasks();
 
 };
+
+
+// 9 Save tasks function
+var saveTasks = function() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+};
+
 
 formEl.addEventListener("submit", taskFormHandler); 
 
